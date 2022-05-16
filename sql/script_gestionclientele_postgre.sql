@@ -3,20 +3,9 @@ Commande (#NumClient, #RefProd, DateCommande, Qtite)
 Produit (RefProd, Désignation, QtiteDispo, #NumFour)
 Fournisseur (NumFour, NomFour)
 
-CREATE TABLE Client (
-    NumClient int PRIMARY KEY NOT NULL,
-    NomClient text, PrenomClient text,
-    TelClient varchar(10)
-);
-
-CREATE TABLE Commande(
-    NumClient int NOT NULL,
-    RefProd int NOT NULL ,
-    DateCommande  DATE NOT NULL DEFAULT CURRENT_DATE,
-    Qtite int,
-    PRIMARY KEY (NumClient, RefProd, DateCommande),
-    FOREIGN KEY (NumClient) REFERENCES Client(NumClient),
-    FOREIGN KEY (RefProd) REFERENCES Produit(RefProd)
+CREATE TABLE Fournisseur (
+    NumFour SMALLSERIAL PRIMARY KEY,
+    NomFour text DEFAULT 'Non renseigne'
 );
 
 CREATE TABLE Produit (
@@ -27,16 +16,29 @@ CREATE TABLE Produit (
     FOREIGN KEY (NumFour) REFERENCES Fournisseur(NumFour)
 );
 
-
-
-
-CREATE TABLE Fournisseur (
-    NumFour int PRIMARY KEY NOT NULL, 
-    NomFour text DEFAULT 'Non renseigne'
+CREATE TABLE Client (
+    NumClient SMALLSERIAL PRIMARY KEY,
+    NomClient text,
+    PrenomClient text,
+    TelClient varchar(10)
 );
 
-ALTER TABLE Produit add NumFour int;
-ALTER TABLE Commande DROP CONSTRAINT commande_ibfk_1 ADD CONSTRAINT
+CREATE TABLE Commande(
+    NumClient int NOT NULL,
+    RefProd int NOT NULL,
+    DateCommande  DATE NOT NULL DEFAULT CURRENT_DATE,
+    Qtite int NOT NULL,
+    PRIMARY KEY (NumClient, RefProd, DateCommande),
+    FOREIGN KEY (NumClient) REFERENCES Client(NumClient),
+    FOREIGN KEY (RefProd) REFERENCES Produit(RefProd)
+);
+
+
+
+
+
+
+ALTER TABLE Commande DROP CONSTRAINT commande_ibfk_1;
 
 ALTER TABLE Commande add CONSTRAINT FOREIGN KEY (NumFour) REFERENCES Fournisseur(NumFour);
 
@@ -44,7 +46,7 @@ ALTER TABLE Commande DROP CONSTRAINT commande_ibfk_1;
 
 ALTER TABLE Commande add CONSTRAINT commande_ibfk_1 FOREIGN KEY (NumClient) REFERENCES Client(NumClient) ON DELETE CASCADE ON UPDATE CASCADE;
 
-SELECT CONSTRAINT_NAME, TABLE_NAME, COLUMN_NAME, REFERENCED_TABLE_NAME, REFERENCED_COLUMN_NAME from INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME=’produit’
+SELECT CONSTRAINT_NAME, TABLE_NAME, COLUMN_NAME, REFERENCED_TABLE_NAME, REFERENCED_COLUMN_NAME from INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME='produit';
 
 ALTER TABLE Produit DROP Designation;
 
@@ -92,12 +94,12 @@ UPDATE Fournisseur SET Bio = false WHERE NomFour != 'Bio et Cie';
 	(6, 'Tout est bio', true), 
 	(7, 'Fruits du monde', false);
 
-INSERT INTO Client(numClient, nomClient, prenomClient, telClient) VALUES
-	(20, 'Labiche','Paul', '0653526312'),
-	(36, 'Bernard', 'Samuel', '0134875436'),
-	(138, 'Dubois', 'René', '0487342756'),
-	(15, 'Dupont', 'Eric', '0125786543'),
-	(35, 'Dubois','Charles', '0638754326');
+INSERT INTO Client(nomClient, prenomClient, telClient) VALUES
+	('Labiche','Paul', '0653526312'),
+	('Bernard', 'Samuel', '0134875436'),
+	('Dubois', 'René', '0487342756'),
+	('Dupont', 'Eric', '0125786543'),
+	('Dubois','Charles', '0638754326');
 
 
 INSERT INTO Produit(refProd, designation, qtiteDispo, numFour) VALUES
@@ -108,7 +110,7 @@ INSERT INTO Produit(refProd, designation, qtiteDispo, numFour) VALUES
 	(726, 'Graines Salade Laitue', 25, 3);
 
 INSERT INTO Commande(dateCommande, qtite, numClient, refProd) VALUES
-	('2019-01-20', 5, 36,3255),
-	('2019-01-20', 2, 35,725),
-	('2019-01-25', 2, 138,3255),
-	('2019-01-30', 1, 138,726);
+	('2022-01-20', 5, 5,3255),
+	('2022-01-20', 2, 9,725),
+	('2022-01-25', 2, 6,3255),
+	('2019-01-30', 1, 3,726);
