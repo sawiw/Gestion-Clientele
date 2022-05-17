@@ -43,5 +43,46 @@ class Client
      */
     private $telclient;
 
+    public function getNumclient(): ?int
+    {
+        return $this->numclient;
+    }
+
+    public function getNomclient(): ?string
+    {
+        return $this->nomclient;
+    }
+
+    public function setNomclient(?string $nomclient): self
+    {
+        $this->nomclient = $nomclient;
+
+        return $this;
+    }
+
+    public function getPrenomclient(): ?string
+    {
+        return $this->prenomclient;
+    }
+
+    public function setPrenomclient(?string $prenomclient): self
+    {
+        $this->prenomclient = $prenomclient;
+
+        return $this;
+    }
+
+    public function getTelclient(): ?string
+    {
+        return $this->telclient;
+    }
+
+    public function setTelclient(?string $telclient): self
+    {
+        $this->telclient = $telclient;
+
+        return $this;
+    }
+
 
 }

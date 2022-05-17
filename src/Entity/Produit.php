@@ -46,5 +46,46 @@ class Produit
      */
     private $numfour;
 
+    public function getRefprod(): ?int
+    {
+        return $this->refprod;
+    }
+
+    public function getQtitedispo(): ?int
+    {
+        return $this->qtitedispo;
+    }
+
+    public function setQtitedispo(?int $qtitedispo): self
+    {
+        $this->qtitedispo = $qtitedispo;
+
+        return $this;
+    }
+
+    public function getDesignation(): ?string
+    {
+        return $this->designation;
+    }
+
+    public function setDesignation(?string $designation): self
+    {
+        $this->designation = $designation;
+
+        return $this;
+    }
+
+    public function getNumfour(): ?Fournisseur
+    {
+        return $this->numfour;
+    }
+
+    public function setNumfour(?Fournisseur $numfour): self
+    {
+        $this->numfour = $numfour;
+
+        return $this;
+    }
+
 
 }

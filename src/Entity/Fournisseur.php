@@ -36,5 +36,34 @@ class Fournisseur
      */
     private $bio;
 
+    public function getNumfour(): ?int
+    {
+        return $this->numfour;
+    }
+
+    public function getNomfour(): ?string
+    {
+        return $this->nomfour;
+    }
+
+    public function setNomfour(?string $nomfour): self
+    {
+        $this->nomfour = $nomfour;
+
+        return $this;
+    }
+
+    public function isBio(): ?bool
+    {
+        return $this->bio;
+    }
+
+    public function setBio(?bool $bio): self
+    {
+        $this->bio = $bio;
+
+        return $this;
+    }
+
 
 }

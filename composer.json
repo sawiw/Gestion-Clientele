@@ -25,7 +25,6 @@
         "symfony/http-client": "6.0.*",
         "symfony/intl": "6.0.*",
         "symfony/mailer": "6.0.*",
-        "symfony/maker-bundle": "^1.42",
         "symfony/mime": "6.0.*",
         "symfony/monolog-bundle": "^3.0",
         "symfony/notifier": "6.0.*",
@@ -100,6 +99,7 @@
     },
     "require-dev": {
         "symfony/debug-bundle": "6.0.*",
+        "symfony/maker-bundle": "^1.42",
         "symfony/stopwatch": "6.0.*",
         "symfony/web-profiler-bundle": "6.0.*"
     }

@@ -52,5 +52,46 @@ class Commande
      */
     private $refprod;
 
+    public function getDatecommande(): ?\DateTimeInterface
+    {
+        return $this->datecommande;
+    }
+
+    public function getQtite(): ?int
+    {
+        return $this->qtite;
+    }
+
+    public function setQtite(int $qtite): self
+    {
+        $this->qtite = $qtite;
+
+        return $this;
+    }
+
+    public function getNumclient(): ?Client
+    {
+        return $this->numclient;
+    }
+
+    public function setNumclient(?Client $numclient): self
+    {
+        $this->numclient = $numclient;
+
+        return $this;
+    }
+
+    public function getRefprod(): ?Produit
+    {
+        return $this->refprod;
+    }
+
+    public function setRefprod(?Produit $refprod): self
+    {
+        $this->refprod = $refprod;
+
+        return $this;
+    }
+
 
 }
